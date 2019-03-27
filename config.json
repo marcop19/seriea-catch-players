@@ -1,0 +1,8 @@
+{
+    "mssql":{
+        "host":"serverdb",
+        "user":"userdb",
+        "passwd":"password",
+        "db":"database"
+    }
+}

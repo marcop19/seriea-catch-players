@@ -1,16 +1,26 @@
 # Import giocatori SERIE A dal sito ufficiale "http://www.legaseriea.it
 # Created by Marco Plescia...
 
+#Recupero i paramentri di connessione al DB dal config.json e restituisco la stringa di connessione
+def ReadConnectionParamsDB():
+    import json
+    with open('config.json') as json_data_file:
+        data = json.load(json_data_file)
+
+    stringconnection = ("Driver={SQL Server};"
+                  "Server=" + data['mssql']['host'] + ";"
+                  "Database=" + data['mssql']['db'] + ";"
+                  "UID=" + data['mssql']['user'] + ";"
+                  "PWD=" + data['mssql']['passwd'] + ";")
+
+    return stringconnection
+
 def giocatori(url, squadra):
     import requests
     import urllib.request
     from bs4 import BeautifulSoup
     import pyodbc 
-    cnxn = pyodbc.connect("Driver={SQL Server};"
-                          "Server=VM-WINXP;"
-                          "Database=SERIEA;"
-                          "UID=sa;"
-                          "PWD=xxxx;")
+    cnxn = pyodbc.connect(ReadConnectionParamsDB())
     cursor = cnxn.cursor()
 
     # Set the URL you want to webscrape from

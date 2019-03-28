@@ -14,6 +14,7 @@ CREATE TABLE giocatori (
 	gi_squadra varchar(50)
 )
 
+
 CREATE UNIQUE CLUSTERED INDEX [idx_gi_id] ON [dbo].[giocatori] (
 	[gi_id] ASC
 )
